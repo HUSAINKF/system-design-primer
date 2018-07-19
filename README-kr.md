@@ -465,29 +465,29 @@ AP는 비즈니스에서 [궁극적 일관성](#궁극적-일관성) 이 필요�
 * [A plain english introduction to CAP theorem](http://ksat.me/a-plain-english-introduction-to-cap-theorem/)
 * [CAP FAQ](https://github.com/henryr/cap-faq)
 
-## Consistency patterns
+## 일관성 패턴
 
-With multiple copies of the same data, we are faced with options on how to synchronize them so clients have a consistent view of the data.  Recall the definition of consistency from the [CAP theorem](#cap-theorem) - Every read receives the most recent write or an error.
+동일한 데이터에 대해 여러개의 복사본을 사용하고 있는 경우, 동기화 방법에 대한 옵션이 제공되므로 클라이언트는 데이터에 대한 일관성있는 뷰를 가지게 됩니다. [CAP 원리](#CAP-원리) 에서 언급했던 일관성의 정의를 떠올려보세요. `모든 읽기 작업은 가장 최근에 발생한 쓰기 작업 및 오류를 읽어들인다`
 
-### Weak consistency
+### 약한 일관성
 
-After a write, reads may or may not see it.  A best effort approach is taken.
+쓰기 연산의 결과가 읽기 연산에서 읽어들여질 수도 읽어들여지지 않을 수도 있습니다. 최선을 다한 노력이 들어가긴 합니다.
 
-This approach is seen in systems such as memcached.  Weak consistency works well in real time use cases such as VoIP, video chat, and realtime multiplayer games.  For example, if you are on a phone call and lose reception for a few seconds, when you regain connection you do not hear what was spoken during connection loss.
+이와 같은 접근 방법은 memcached 와 같은 시스템에서 보여지는데요. VoIP, 영상통화, 실시간 멀티플레이어 게임과 같은 실시간 사용 사례에서 약한 일관성이 잘 적용되고 있습니다. 예를 들어, 전화 통화 중에 몇 초 동안 수신이 끊겨서 다시 연결하는 경우를 생각해봅시다. 연결이 끊긴 도중에는 어떤 얘기가 오갔는지 들을 수 없습니다.
 
-### Eventual consistency
+### 궁극적 일관성
 
-After a write, reads will eventually see it (typically within milliseconds).  Data is replicated asynchronously.
+쓰기 연산의 결과를 최종적으로는 읽기 연산을 통해 읽어들일 수는 있을 겁니다(일반적으로 밀리세컨드 이내입니다). 이 때, 데이터는 비동기식으로 복제됩니다.
 
-This approach is seen in systems such as DNS and email.  Eventual consistency works well in highly available systems.
+이와 같은 접근 방법은 DNS나 이메일과 같은 시스템에서 보여집니다. 궁극적 일관성은 고가용성의 시스템에서 잘 적용되고 있습니다.
 
-### Strong consistency
+### 강한 일관성
 
-After a write, reads will see it.  Data is replicated synchronously.
+쓰기 연산의 결과를 읽기 연산으로 읽어들일 수 있게 됩니다. 이 때, 데이터는 동기식으로 복제됩니다.
 
-This approach is seen in file systems and RDBMSes.  Strong consistency works well in systems that need transactions.
+이와 같은 접근 방법은 파일시스템이나 여러 RDBMS에서 보여집니다. 강한 일관성은 트랜잭션이 요구되는 시스템에서 잘 적용되고 있습니다. 
 
-### Source(s) and further reading
+### 참고한 자료 및 읽어볼만한 글
 
 * [Transactions across data centers](http://snarfed.org/transactions_across_datacenters_io.html)
 
